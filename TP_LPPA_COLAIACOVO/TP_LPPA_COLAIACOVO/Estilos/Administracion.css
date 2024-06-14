@@ -1,0 +1,81 @@
+﻿.container {
+    height: calc(100% - 49px);
+    position: relative;
+    display: grid;
+    grid-template-areas:
+        "navbar navbar"
+        "sidebar main";
+    grid-template-rows: 60px 1fr;
+    grid-template-columns: auto 1fr;
+    height: 100%;
+}
+
+.main-container { 
+    width: 100%;
+    height: 100%;
+}
+
+.table-container {
+    padding-top: 100px;
+    width: 100%;
+    height: 600px;
+}
+
+table {
+    max-width: 600px;
+    width: 600px;
+    border-collapse: collapse;
+    margin: auto;
+    table-layout: fixed;
+}
+
+#tablaUsuarios {
+    width: 800px !important;
+    max-width: 800px !important;
+}
+#tablaProductos {
+    width: 1000px !important;
+    max-width: 1000px !important;
+}
+
+.truncated {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px; /* Ajusta este valor según tus necesidades */
+}
+
+/* Estilo para las celdas de la tabla */
+td, th {
+    border: 1px solid #ddd;
+    padding: 16px;
+}
+
+th:first-child {
+    width: 30px;
+}
+
+/* Estilo para las filas pares (efecto cebra) */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Estilo para las filas impares (puede ser opcional, aquí se usa blanco) */
+tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+/* Estilo para los encabezados de la tabla */
+th {
+    background-color: #4CAF50; /* Cambia este color según tus necesidades */
+    color: white;
+    font-weight: bold;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+}
+
+/* Opcional: Estilo para el hover de las filas */
+tr:hover {
+    background-color: #ddd;
+}

@@ -1,0 +1,82 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TP_LPPA_COLAIACOVO", "TP_LPPA_COLAIACOVO\", "{62363073-CE93-4823-A1BA-AC24D31ADA88}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.7.2"
+		ProjectReferences = "{2ec959d9-2d50-4844-a496-aa1e85f81ae0}|LPPA_Colaiacovo_BLL.dll;{8472e536-b714-4ca6-ac5d-48dec063537a}|LPPA_Colaiacovo_Entidades.dll;{707DB19A-8DEE-4F92-8830-7782E83A8FBA}|LPPA_Colaiacovo_DAL.dll;{3B87497D-E39F-47D7-B199-C34112AC5FFF}|LPPA_Colaiacovo_Mapper.dll;{02DD89E0-3354-433F-BE4E-3C250A653E82}|LPPA_Colaiacovo_Services.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_49884"
+		Debug.AspNetCompiler.PhysicalPath = "TP_LPPA_COLAIACOVO\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_49884\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_49884"
+		Release.AspNetCompiler.PhysicalPath = "TP_LPPA_COLAIACOVO\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_49884\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "49884"
+		SlnRelativePath = "TP_LPPA_COLAIACOVO\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LPPA_Colaiacovo_Entidades", "LPPA_Colaiacovo_Entidades\LPPA_Colaiacovo_Entidades.csproj", "{8472E536-B714-4CA6-AC5D-48DEC063537A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LPPA_Colaiacovo_DAL", "LPPA_Colaiacovo_DAL\LPPA_Colaiacovo_DAL.csproj", "{707DB19A-8DEE-4F92-8830-7782E83A8FBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LPPA_Colaiacovo_Mapper", "LPPA_Colaiacovo_Mapper\LPPA_Colaiacovo_Mapper.csproj", "{3B87497D-E39F-47D7-B199-C34112AC5FFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LPPA_Colaiacovo_Test", "LPPA_Colaiacovo_Test\LPPA_Colaiacovo_Test.csproj", "{654DE9E7-9483-40F2-90A0-4C8E98D89EE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LPPA_Colaiacovo_BLL", "LPPA_Colaiacovo_BLL\LPPA_Colaiacovo_BLL.csproj", "{2EC959D9-2D50-4844-A496-AA1E85F81AE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LPPA_Colaiacovo_Services", "LPPA_Colaiacovo_Services\LPPA_Colaiacovo_Services.csproj", "{02DD89E0-3354-433F-BE4E-3C250A653E82}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{62363073-CE93-4823-A1BA-AC24D31ADA88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62363073-CE93-4823-A1BA-AC24D31ADA88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62363073-CE93-4823-A1BA-AC24D31ADA88}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{62363073-CE93-4823-A1BA-AC24D31ADA88}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{8472E536-B714-4CA6-AC5D-48DEC063537A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8472E536-B714-4CA6-AC5D-48DEC063537A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8472E536-B714-4CA6-AC5D-48DEC063537A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8472E536-B714-4CA6-AC5D-48DEC063537A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{707DB19A-8DEE-4F92-8830-7782E83A8FBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{707DB19A-8DEE-4F92-8830-7782E83A8FBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{707DB19A-8DEE-4F92-8830-7782E83A8FBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{707DB19A-8DEE-4F92-8830-7782E83A8FBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B87497D-E39F-47D7-B199-C34112AC5FFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B87497D-E39F-47D7-B199-C34112AC5FFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B87497D-E39F-47D7-B199-C34112AC5FFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B87497D-E39F-47D7-B199-C34112AC5FFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{654DE9E7-9483-40F2-90A0-4C8E98D89EE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{654DE9E7-9483-40F2-90A0-4C8E98D89EE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{654DE9E7-9483-40F2-90A0-4C8E98D89EE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{654DE9E7-9483-40F2-90A0-4C8E98D89EE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EC959D9-2D50-4844-A496-AA1E85F81AE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EC959D9-2D50-4844-A496-AA1E85F81AE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EC959D9-2D50-4844-A496-AA1E85F81AE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EC959D9-2D50-4844-A496-AA1E85F81AE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02DD89E0-3354-433F-BE4E-3C250A653E82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02DD89E0-3354-433F-BE4E-3C250A653E82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02DD89E0-3354-433F-BE4E-3C250A653E82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02DD89E0-3354-433F-BE4E-3C250A653E82}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {07872CD4-E951-4B1F-9EA4-856E5F9B351E}
+	EndGlobalSection
+EndGlobal

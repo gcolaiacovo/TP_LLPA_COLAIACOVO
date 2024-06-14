@@ -1,0 +1,27 @@
+﻿/* Barra lateral */
+.sidebar {
+    height: calc(100% - 40px);
+    width: 200px;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    grid-area: sidebar;
+}
+
+    .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .sidebar li {
+        margin-bottom: 10px;
+    }
+
+    .sidebar a {
+        color: white;
+        text-decoration: none;
+    }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+        }

@@ -1,0 +1,90 @@
+﻿/* Estilos CSS para el carousel */
+.carousel {
+    width: 100%;
+    overflow: hidden;
+    height: 300px;
+}
+
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-item {
+    width: calc(20% - 7.5px); /* 25% para mostrar 4 items a la vez */
+    margin: 0 7.5px; /* 7.5px de margen horizontal */
+    flex: 0 0 auto;
+    position: relative;
+}
+
+.popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    display: none; /* Inicialmente oculto */
+    z-index: 999; /* Asegura que el popup esté encima de otros elementos */
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombrero leve */
+    transition: box-shadow 0.3s ease; /* Transición suave de la sombra */
+}
+
+    .card:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombrero intensificado al pasar el mouse */
+    }
+
+        .card:hover img {
+            transition: transform ease-in-out .2s;
+            transform: scale(1.15); /* Escala de la imagen al pasar el mouse */
+        }
+
+    .card img {
+        margin: auto;
+        width: 100%;
+        height: auto;
+        display: block;
+        max-width: 200px;
+        max-height: 200px;
+        min-height: 200px;
+        min-height: 200px;
+        object-fit: cover;
+    }
+
+.price-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.card-name {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    position: relative; /* Asegura que el texto tenga una posición relativa */
+    z-index: 1; /* Asegura que el texto esté por encima de la imagen */
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.offer-price {
+    color: red;
+    font-weight: bold;
+    font-size: 24px;
+}

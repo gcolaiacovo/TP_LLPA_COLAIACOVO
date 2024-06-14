@@ -1,0 +1,10 @@
+﻿.contenedor {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 57px); /* Ajusta el 100px según la altura del footer */
+}
+
+/* Contenido principal */
+main {
+    flex: 1; /* Toma todo el espacio disponible */
+}

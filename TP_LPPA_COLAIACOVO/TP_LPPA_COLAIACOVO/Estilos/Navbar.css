@@ -1,0 +1,97 @@
+﻿.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f8f8;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    grid-area: navbar;
+}
+
+a {
+    text-decoration: none; /* Elimina el subrayado */
+    color: inherit; /* Hereda el color del texto */
+}
+
+    a:visited {
+        color: inherit; /* Hereda el color del texto para enlaces visitados */
+    }
+
+.navbar .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: "Wide Latin";
+    text-decoration: none;
+    color: darkorange;
+}
+
+.navbar .navbar-nav {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+    .navbar .navbar-nav .nav-item {
+        margin-right: 20px;
+    }
+
+    .navbar .navbar-nav .nav-link {
+        text-decoration: none;
+        color: #333;
+        font-size: 1rem;
+    }
+
+.navbar .navbar-icons {
+    display: flex;
+    align-items: center;
+}
+
+    .navbar .navbar-icons a {
+        margin-left: 20px;
+        color: #333;
+        font-size: 1.5rem;
+        text-decoration: none;
+    }
+
+        .navbar .navbar-icons a:hover {
+            color: #007bff;
+        }
+
+
+.user-menu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding: 10px 0;
+    width: 155px;
+}
+
+    .user-menu li {
+        list-style-type: none;
+    }
+
+        .user-menu li a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px !important;
+            margin-left: 0 !important;
+        }
+
+            .user-menu li a:hover {
+                background-color: #f1f1f1;
+            }
+
+/* Estilos para ajustar la posición del menú desplegable */
+.navbar-icons {
+    position: relative;
+}
+
+.user-menu {
+    top: 100%;
+    right: 0;
+}
