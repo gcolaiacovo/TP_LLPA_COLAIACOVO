@@ -23,7 +23,7 @@ public partial class FinalizarCompra : System.Web.UI.Page
         {
             var productos = JsonConvert.DeserializeObject<List<Producto>>(productosCookie.Value);
 
-            if (productos?.Any() == true)
+            if (productos.Any())
             {
                 var productosEnCarrito = productoIdsEnCarrito
                     .GroupBy(p => p)

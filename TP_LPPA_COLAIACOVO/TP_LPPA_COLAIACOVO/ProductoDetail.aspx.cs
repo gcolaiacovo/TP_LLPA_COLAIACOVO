@@ -25,8 +25,8 @@ public partial class ProductoDetail : System.Web.UI.Page
                     lblNombre.Text = producto.Nombre;
                     lblDescripcion.Text = producto.Descripcion;
                     lblMarca.Text = producto.Marca;
-                    lblStock.Text = $"En stock: {producto.Stock.ToString()}";
-                    lblPrecio.Text = $"$ {producto.Precio.ToString()}";
+                    lblStock.Text = "En stock: " + producto.Stock.ToString();
+                    lblPrecio.Text = "$ " + producto.Precio.ToString();
 
                     ViewState["Producto"] = producto;
                 }

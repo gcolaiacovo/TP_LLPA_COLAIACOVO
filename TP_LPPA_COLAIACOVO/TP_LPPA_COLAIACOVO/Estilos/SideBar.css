@@ -1,6 +1,7 @@
 ﻿/* Barra lateral */
 .sidebar {
-    height: calc(100% - 40px);
+    height: calc(100vh - 100px);
+    calc(100% - 40px);
     width: 200px;
     background-color: #333;
     color: white;

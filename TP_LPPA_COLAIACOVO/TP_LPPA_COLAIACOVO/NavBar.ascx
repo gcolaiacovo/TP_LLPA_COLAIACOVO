@@ -17,8 +17,13 @@
             <a class="nav-link" href="Default.aspx#tituloServicios">Servicios</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="Default.aspx#tituloAcercaDe">Acerca de</a>
+            <a class="nav-link" href="Default.aspx#tituloAbout">Acerca de</a>
         </li>
+        <% if (IsAdmin) {  %>
+        <li class="nav-item">
+            <a class="nav-link" href="Administracion.aspx">Administracion</a>
+        </li>
+        <% } %>
     </ul>
     <div class="navbar-icons">
         <a href="#" onclick="toggleUserMenu(event)"><i class="fas fa-user"></i></a>

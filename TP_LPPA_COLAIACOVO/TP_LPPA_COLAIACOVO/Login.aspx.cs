@@ -25,7 +25,7 @@ public partial class Login : System.Web.UI.Page
         string email = txtUsuario.Text;
         string contrasena = txtContrasena.Text;
 
-        var usuario = usuarios?.Find(x => x.Email == email && x.Contrasena == EncryptionService.Encriptar(contrasena));
+        var usuario = usuarios.Find(x => x.Email == email && x.Contrasena == EncryptionService.Encriptar(contrasena));
         if (usuario == null)
         {
             lblMensaje.Text = "Usuario o contraseña incorrectos";

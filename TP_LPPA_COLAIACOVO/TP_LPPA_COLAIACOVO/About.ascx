@@ -1,17 +1,17 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="About.ascx.cs" Inherits="About" %>
 
 <div class="container">
-    <h1>Sobre Nosotros</h1>
+    <h1 class="text-center" id="tituloAbout">Sobre Nosotros</h1>
 
     <div class="section">
         <h2>Nuestra Historia</h2>
-        <p>Bienvenido a [Nombre de la Empresa], tu fuente número uno para productos de nutrición deportiva y servicios de entrenamiento personalizado. Nos dedicamos a brindarte lo mejor en suplementos de alta calidad y planes de entrenamiento personalizados para ayudarte a alcanzar tus metas de salud y fitness.</p>
-        <p>Fundada en [Año de Fundación], [Nombre de la Empresa] nació de una pasión por la salud y el bienestar. Nuestro fundador, [Nombre del Fundador], es un entusiasta del fitness con años de experiencia en entrenamiento y nutrición. Al darse cuenta de la falta de productos de calidad y servicios personalizados en el mercado, decidió crear una empresa que cubriera estas necesidades.</p>
+        <p>En Gymfit somos tu fuente número uno para productos de nutrición deportiva y servicios de entrenamiento personalizado. Nos dedicamos a brindarte lo mejor en suplementos de alta calidad y planes de entrenamiento personalizados para ayudarte a alcanzar tus metas de salud y fitness.</p>
+        <p>Fundada en 2012, Gymfit nació de una pasión por la salud y el bienestar. Nuestro fundador, Gino Colaiacovo, es un entusiasta del fitness con años de experiencia en entrenamiento y nutrición. Al darse cuenta de la falta de productos de calidad y servicios personalizados en el mercado, decidió crear una empresa que cubriera estas necesidades.</p>
     </div>
 
     <div class="section">
         <h2>Nuestros Productos</h2>
-        <p>En [Nombre de la Empresa], ofrecemos una amplia gama de suplementos nutricionales, incluyendo:</p>
+        <p>En Gymfit, ofrecemos una amplia gama de suplementos nutricionales, incluyendo:</p>
         <ul>
             <li><strong>Proteínas:</strong> Suero de leche, caseína, proteínas veganas y más.</li>
             <li><strong>Creatinas:</strong> Monohidrato de creatina, creatina micronizada y otros tipos.</li>
@@ -51,8 +51,8 @@
     <div class="section contact-info">
         <h2>Contáctanos</h2>
         <p>Si tienes alguna pregunta o necesitas más información, no dudes en ponerte en contacto con nosotros. Estamos aquí para ayudarte.</p>
-        <p><strong>Email:</strong> <a href="mailto:tuemail@empresa.com">tuemail@empresa.com</a></p>
-        <p><strong>Teléfono:</strong> [Número de Teléfono]</p>
-        <p><strong>Dirección:</strong> [Dirección Física de la Empresa]</p>
+        <p><strong>Email:</strong> <a href="mailto:tuemail@empresa.com">contacto@gymfit.com</a></p>
+        <p><strong>Teléfono:</strong> 1158633360</p>
+        <p><strong>Dirección:</strong> Calderon de la Barca 1625</p>
     </div>
 </div>

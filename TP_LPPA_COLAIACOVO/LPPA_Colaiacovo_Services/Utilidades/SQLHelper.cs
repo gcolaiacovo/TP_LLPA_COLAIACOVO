@@ -4,7 +4,7 @@
     {
         public static string GetConnectionString()
         {
-            return "Data Source=localhost;Initial Catalog=GColaiacovoLPPA;Integrated Security=True;";
+            return "Data Source=DESKTOP-QMDVD1K\\SQLEXPRESS;Initial Catalog=GColaiacovoLPPA;Integrated Security=True;";
             //return ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
         }
     }
