@@ -127,6 +127,7 @@
 
                     <div id="menuBackup">
                         <asp:Button ID="crearBackup" runat="server" Text="Crear Backup" OnClick="crearBackup_Click" />
+                        <asp:Button ID="recuperarBackup" runat="server" Text="Recuperar Backup" OnClick="recuperarBackup_Click" />
                     </div>
                 </div>
             </div>

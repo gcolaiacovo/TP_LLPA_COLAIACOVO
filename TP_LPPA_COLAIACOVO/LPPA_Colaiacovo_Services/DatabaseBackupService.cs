@@ -8,7 +8,7 @@ namespace LPPA_Colaiacovo_Services
     {
         public void CrearBackupBaseDeDatos()
         {
-            var query = $"BACKUP DATABASE [GColaiacovoLPPA] TO DISK = 'backup.bak' WITH INIT";
+            var query = $"BACKUP DATABASE [GColaiacovoLPPA] TO DISK = 'C:\\backups\\backup.bak' WITH INIT";
             using (SqlConnection connection = new SqlConnection(SQLHelper.GetConnectionString()))
             {
                 connection.Open();

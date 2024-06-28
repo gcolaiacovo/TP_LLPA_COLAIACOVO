@@ -8,7 +8,10 @@
 <%@ Register Src="~/CambiarContraseña.ascx" TagPrefix="cs" TagName="CambiarContraseña" %>
 
 <nav class="navbar">
-    <div class="navbar-brand"><a class="nav-link" href="Default.aspx">Gymfit</a></div>
+    <div class="navbar-brand">
+        <a class="nav-link" href="Default.aspx">
+            <img src="Resources/logo.png" class="logo" /></a>
+    </div>
     <ul class="navbar-nav">
         <li class="nav-item">
             <a class="nav-link" href="Default.aspx#tituloProductos" onclick="scrollToSection('tituloProductos')">Productos</a>
@@ -19,7 +22,8 @@
         <li class="nav-item">
             <a class="nav-link" href="Default.aspx#tituloAbout">Acerca de</a>
         </li>
-        <% if (IsAdmin) {  %>
+        <% if (IsAdmin)
+            {  %>
         <li class="nav-item">
             <a class="nav-link" href="Administracion.aspx">Administracion</a>
         </li>

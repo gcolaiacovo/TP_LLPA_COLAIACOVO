@@ -57,8 +57,9 @@ public partial class Administracion : System.Web.UI.Page
 
             foreach (var bitacora in bitacoras)
             {
-                if (!bitacora.IdUsuario.HasValue)
+                if (!bitacora.IdUsuario.HasValue || bitacora.IdUsuario == 0)
                 {
+                    bitacora.Usuario = new Usuario();
                     continue;
                 }
 
@@ -82,11 +83,34 @@ public partial class Administracion : System.Web.UI.Page
         try
         {
             databaseBackupService.CrearBackupBaseDeDatos();
+            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('El backup de la base de datos se creó correctamente.');", true);
         }
-        catch (Exception)
+        catch (Exception ex)
         {
+            bLLBitacora.SaveBitacora(new Bitacora()
+            {
+                Descripcion = "Error al crear el backup de la base de datos! " + ex.Message,
+            });
 
-            throw;
+            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Error al crear el backup de la base de datos!');", true);
+        }
+    }
+
+    protected void recuperarBackup_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            databaseBackupService.CargarBackupBaseDeDatos();
+            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('El backup de la base de datos se recuperó correctamente.');", true);
+        }
+        catch (Exception ex)
+        {
+            bLLBitacora.SaveBitacora(new Bitacora()
+            {
+                Descripcion = "Error al recuperar el backup de la base de datos! " + ex.Message,
+            });
+
+            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Error al recuperar el backup de la base de datos!');", true);
         }
     }
 }
