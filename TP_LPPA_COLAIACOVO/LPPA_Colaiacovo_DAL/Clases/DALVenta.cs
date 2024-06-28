@@ -1,7 +1,7 @@
 ﻿using LPPA_Colaiacovo_DAL.Interfaces;
-using LPPA_Colaiacovo_DAL.Utilidades;
 using LPPA_Colaiacovo_Entidades.Clases;
 using LPPA_Colaiacovo_Mapper.Clases;
+using LPPA_Colaiacovo_Services.Utilidades;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;

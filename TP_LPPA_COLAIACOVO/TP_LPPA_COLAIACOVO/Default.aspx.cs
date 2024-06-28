@@ -22,21 +22,23 @@ public partial class _Default : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            if (Request.Cookies["Usuarios"] == null)
+            try
             {
                 usuarios = BLLUsuario.GetUsuarios();
 
                 HttpCookie cookie = new HttpCookie("Usuarios");
                 cookie.Value = JsonConvert.SerializeObject(usuarios);
                 Response.Cookies.Add(cookie);
-            }
-            if (Request.Cookies["Productos"] == null)
-            {
                 productos = BLLProducto.GetProductos();
 
-                HttpCookie cookie = new HttpCookie("Productos");
+                cookie = new HttpCookie("Productos");
                 cookie.Value = JsonConvert.SerializeObject(productos);
                 Response.Cookies.Add(cookie);
+            }
+            catch (Exception ex)
+            {
+                var mensajeError = ex.Message;
+                Response.Redirect("Error.aspx?mensajeError=" + Server.UrlEncode(mensajeError));
             }
         }
     }

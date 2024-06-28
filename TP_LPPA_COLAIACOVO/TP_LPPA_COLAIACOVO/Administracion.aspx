@@ -13,7 +13,7 @@
     <link href="Estilos/Administracion.css" rel="stylesheet" />
 </head>
 <body>
-    <form runat="server">
+    <form runat="server" novalidate="novalidate">
 
         <div class="container">
             <n:NavBar ID="navBar" runat="server" />
@@ -125,6 +125,9 @@
                         </tbody>
                     </table>
 
+                    <div id="menuBackup">
+                        <asp:Button ID="crearBackup" runat="server" Text="Crear Backup" OnClick="crearBackup_Click" />
+                    </div>
                 </div>
             </div>
         </div>

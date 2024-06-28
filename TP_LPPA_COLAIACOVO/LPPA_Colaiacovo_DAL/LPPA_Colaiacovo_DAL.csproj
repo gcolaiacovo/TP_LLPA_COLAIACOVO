@@ -48,7 +48,6 @@
     <Compile Include="Clases\DALVenta.cs" />
     <Compile Include="Interfaces\IDALGenerica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilidades\SQLHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Web.config" />
@@ -61,6 +60,10 @@
     <ProjectReference Include="..\LPPA_Colaiacovo_Mapper\LPPA_Colaiacovo_Mapper.csproj">
       <Project>{3B87497D-E39F-47D7-B199-C34112AC5FFF}</Project>
       <Name>LPPA_Colaiacovo_Mapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LPPA_Colaiacovo_Services\LPPA_Colaiacovo_Services.csproj">
+      <Project>{02dd89e0-3354-433f-be4e-3c250a653e82}</Project>
+      <Name>LPPA_Colaiacovo_Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -7,6 +7,7 @@
         <li><a href="#" onclick="setMenu(2)">Usuarios</a></li>
         <li><a href="#" onclick="setMenu(3)">Productos</a></li>
         <li><a href="#" onclick="setMenu(4)">Ventas</a></li>
+        <li><a href="#" onclick="setMenu(5)">Backup</a></li>
     </ul>
 </div>
 

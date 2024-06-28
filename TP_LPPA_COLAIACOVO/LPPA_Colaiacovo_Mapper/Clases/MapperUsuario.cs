@@ -23,12 +23,12 @@ namespace LPPA_Colaiacovo_Mapper.Clases
                 var activo = MapperHelper.GetDataType<bool>(sqlDataReader, "Activo");
                 var fechaCreado = MapperHelper.GetDataType<DateTime>(sqlDataReader, "FechaCreado");
                 var fechaModificado = MapperHelper.GetDataType<DateTime?>(sqlDataReader, "FechaModificado");
-                var usuario = new Usuario(id, nombre, apellido, email, contrasena, fechaNacimiento, rol, activo, fechaCreado, fechaModificado);
+                var digitoVerificador = MapperHelper.GetDataType<int>(sqlDataReader, "DigitoVerificador");
+                var usuario = new Usuario(id, nombre, apellido, email, contrasena, fechaNacimiento, rol, activo, fechaCreado, fechaModificado, digitoVerificador);
                 usuarios.Add(usuario);
             }
 
             return usuarios;
         }
-
     }
 }

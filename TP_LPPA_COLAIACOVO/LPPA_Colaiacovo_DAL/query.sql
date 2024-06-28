@@ -12,7 +12,8 @@ CREATE TABLE Usuario (
     Rol NVARCHAR(100),
     Activo BIT NOT NULL DEFAULT 1,
     FechaCreado DATETIME NOT NULL DEFAULT GETDATE(),
-    FechaModificado DATETIME
+    FechaModificado DATETIME,
+    DigitoVerificador INT NOT NULL
 );
 
 

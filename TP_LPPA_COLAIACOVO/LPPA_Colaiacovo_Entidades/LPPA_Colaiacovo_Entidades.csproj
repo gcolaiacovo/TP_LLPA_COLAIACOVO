@@ -50,6 +50,7 @@
     <Compile Include="DTO\UsuarioDTO.cs" />
     <Compile Include="Enums\CategoriaProductoEnum.cs" />
     <Compile Include="Enums\MetodoDePagoEnum.cs" />
+    <Compile Include="Excepciones\DigitoVerificadorException.cs" />
     <Compile Include="Mappers\UsuarioDTOMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLLUsuarioTest.cs" />
     <Compile Include="EncryptionServiceTest.cs" />
     <Compile Include="DALUsuarioTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -58,6 +59,10 @@
     <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LPPA_Colaiacovo_BLL\LPPA_Colaiacovo_BLL.csproj">
+      <Project>{2ec959d9-2d50-4844-a496-aa1e85f81ae0}</Project>
+      <Name>LPPA_Colaiacovo_BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LPPA_Colaiacovo_DAL\LPPA_Colaiacovo_DAL.csproj">
       <Project>{707db19a-8dee-4f92-8830-7782e83a8fba}</Project>
       <Name>LPPA_Colaiacovo_DAL</Name>

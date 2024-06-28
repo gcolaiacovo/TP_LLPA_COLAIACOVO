@@ -3,6 +3,7 @@
     Usuarios: 2,
     Productos: 3,
     Ventas: 4,
+    Backup: 5,
 }
 
 var menuSeleccionado = MENU.Bitacora;
@@ -10,6 +11,7 @@ var menuSeleccionado = MENU.Bitacora;
 window.onload = function () {
     document.getElementById("tablaProductos").classList.add("hidden");
     document.getElementById("tablaUsuarios").classList.add("hidden");
+    document.getElementById("menuBackup").classList.add("hidden");
 }
 
 function setMenu(menu) {
@@ -27,6 +29,9 @@ function mostrarOcultarTablas() {
     if (!document.getElementById("tablaUsuarios").classList.contains("hidden")) {
         document.getElementById("tablaUsuarios").classList.add("hidden");
     }
+    if (!document.getElementById("menuBackup").classList.contains("hidden")) {
+        document.getElementById("menuBackup").classList.add("hidden");
+    }
     //if (!document.getElementById("tablaVentas").classList.contains("hidden")) {
     //    document.getElementById("tablaVentas").classList.add("hidden");
     //}
@@ -39,6 +44,9 @@ function mostrarOcultarTablas() {
     }
     else if (menuSeleccionado == MENU.Productos) {
         document.getElementById("tablaProductos").classList.remove("hidden");
+    }
+    else if (menuSeleccionado == MENU.Backup) {
+        document.getElementById("menuBackup").classList.remove("hidden");
     }
     //else if (menuSeleccionado == MENU.Productos) {
     //    document.getElementById("tablaVentas").classList.remove("hidden");

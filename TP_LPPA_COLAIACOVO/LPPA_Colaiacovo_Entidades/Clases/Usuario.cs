@@ -10,7 +10,7 @@ namespace LPPA_Colaiacovo_Entidades.Clases
                 
         }
 
-        public Usuario(int id, string nombre, string apellido, string email, string contrasena, DateTime? fechaNacimiento, string rol, bool activo, DateTime fechaCreado, DateTime? fechaModificado)
+        public Usuario(int id, string nombre, string apellido, string email, string contrasena, DateTime? fechaNacimiento, string rol, bool activo, DateTime fechaCreado, DateTime? fechaModificado, int digitoVerificador)
         {
             Id = id;
             Nombre = nombre;
@@ -22,6 +22,7 @@ namespace LPPA_Colaiacovo_Entidades.Clases
             Activo = activo;
             FechaCreado = fechaCreado;
             FechaModificado = fechaModificado;
+            DigitoVerificador = digitoVerificador;
         }
 
         public int Id { get; set; }
@@ -34,5 +35,6 @@ namespace LPPA_Colaiacovo_Entidades.Clases
         public bool Activo { get; set; } = true;
         public DateTime FechaCreado { get; set; } = DateTime.Now;
         public DateTime? FechaModificado { get; set; }
+        public int DigitoVerificador { get; set; }
     }
 }

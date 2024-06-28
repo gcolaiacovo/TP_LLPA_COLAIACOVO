@@ -1,4 +1,4 @@
-﻿namespace LPPA_Colaiacovo_DAL.Utilidades
+﻿namespace LPPA_Colaiacovo_Services.Utilidades
 {
     public static class SQLHelper
     {

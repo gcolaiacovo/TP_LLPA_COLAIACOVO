@@ -1,6 +1,7 @@
 ﻿using LPPA_Colaiacovo_BLL.Clases;
 using LPPA_Colaiacovo_Entidades.Clases;
 using LPPA_Colaiacovo_Mapper;
+using LPPA_Colaiacovo_Services;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -15,12 +16,14 @@ public partial class Administracion : System.Web.UI.Page
     private List<Usuario> usuarios = null;
     private List<Producto> productos = null;
     private List<Bitacora> bitacoras = null;
+    private DatabaseBackupService databaseBackupService;
 
     public Administracion()
     {
         bLLBitacora = new BLLBitacora();
         bLLUsuario = new BLLUsuario();
         bLLProducto = new BLLProducto();
+        databaseBackupService = new DatabaseBackupService();
     }
 
     protected void Page_Load(object sender, EventArgs e)
@@ -30,10 +33,11 @@ public partial class Administracion : System.Web.UI.Page
         if (usuarioLogueado == null ||
            (JsonConvert.DeserializeObject<Usuario>(usuarioLogueado.Value).Rol != Constantes.ROL_ADMIN))
         {
-            Response.Redirect("Error.aspx");
+            var mensajeError = "No tiene permisos suficientes para acceder a esta área!";
+            Response.Redirect("Error.aspx?mensajeError=" + Server.UrlEncode(mensajeError));
         }
 
-        if (!IsPostBack)
+        try
         {
             usuarios = bLLUsuario.GetUsuarios();
 
@@ -62,9 +66,27 @@ public partial class Administracion : System.Web.UI.Page
                 bitacora.Usuario = usuario;
             }
         }
+        catch (Exception ex)
+        {
+            var mensajeError = ex.Message;
+            Response.Redirect("Error.aspx?mensajeError=" + Server.UrlEncode(mensajeError));
+        }
 
         ViewState["Bitacoras"] = bitacoras;
         ViewState["Productos"] = productos;
         ViewState["Usuarios"] = usuarios;
+    }
+
+    protected void crearBackup_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            databaseBackupService.CrearBackupBaseDeDatos();
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
     }
 }
