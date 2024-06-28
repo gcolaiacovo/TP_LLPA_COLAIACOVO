@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Login" %>
 
+<%@ Register Src="~/NavBar.ascx" TagPrefix="uc" TagName="Navbar" %>
 <%@ Register Src="~/Footer.ascx" TagPrefix="f" TagName="Footer" %>
 
 <!DOCTYPE html>

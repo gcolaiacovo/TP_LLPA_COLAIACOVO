@@ -38,7 +38,7 @@
                                     <%= bitacora.Id %> 
                                 </td>
                                 <td>
-                                    <%= bitacora.Usuario?.Nombre %> <%= bitacora.Usuario?.Apellido %>
+                                    <%= bitacora.Usuario.Nombre %> <%= bitacora.Usuario.Apellido %>
                                 </td>
                                 <td>
                                     <%= bitacora.Descripcion %> 

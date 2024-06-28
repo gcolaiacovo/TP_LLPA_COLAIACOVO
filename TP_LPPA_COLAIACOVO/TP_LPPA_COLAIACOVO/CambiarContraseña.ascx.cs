@@ -1,10 +1,11 @@
 ﻿using LPPA_Colaiacovo_BLL.Clases;
-using LPPA_Colaiacovo_Entidades.Clases;
 using LPPA_Colaiacovo_Entidades.DTO;
-using Newtonsoft.Json;
 using System;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Bson;
 using System.Web;
 using System.Web.UI;
+using Newtonsoft.Json;
 
 public partial class CambiarContraseña : System.Web.UI.UserControl
 {
