@@ -25,6 +25,7 @@ namespace LPPA_Colaiacovo_BLL.Clases
                 EncryptionService.Encriptar(curPassword) == usuario.Contrasena)
             {
                 usuario.Contrasena = EncryptionService.Encriptar(newPass);
+                usuario.DigitoVerificador = CalcularChecksum(usuario);
 
                 DALUsuario.Save(usuario);
 

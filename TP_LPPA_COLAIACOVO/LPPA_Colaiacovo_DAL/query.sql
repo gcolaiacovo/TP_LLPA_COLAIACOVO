@@ -17,14 +17,14 @@ CREATE TABLE Usuario (
 );
 
 
-INSERT INTO Usuario (Nombre, Apellido, Email, Contrasena, FechaNacimiento, Rol, Activo, FechaCreado, FechaModificado)
-VALUES ('Juan', 'Perez', 'juan.perez@example.com', 'bf733ae1731f8fe8ed936df6d6b6859b3e3946c8ebcd872ecb61e57b0bc8b64f', '1985-06-15', 'ADMIN', 1, GETDATE(), NULL);
+INSERT INTO Usuario (Nombre, Apellido, Email, Contrasena, FechaNacimiento, Rol, Activo, FechaCreado, FechaModificado, DigitoVerificador)
+VALUES ('Juan', 'Perez', 'juan.perez@example.com', 'bf733ae1731f8fe8ed936df6d6b6859b3e3946c8ebcd872ecb61e57b0bc8b64f', '1985-06-15', 'ADMIN', 1, GETDATE(), NULL, 99);
 
-INSERT INTO Usuario (Nombre, Apellido, Email, Contrasena, FechaNacimiento, Rol, Activo, FechaCreado, FechaModificado)
-VALUES ('Ana', 'Garcia', 'ana.garcia@example.com', 'd8b659df6fb202fb84feb7717eb64d9d0a401be3ab3b12da93bb64c5ea48b150', '1990-09-23', 'USER', 1, GETDATE(), NULL);
+INSERT INTO Usuario (Nombre, Apellido, Email, Contrasena, FechaNacimiento, Rol, Activo, FechaCreado, FechaModificado, DigitoVerificador)
+VALUES ('Ana', 'Garcia', 'ana.garcia@example.com', 'd8b659df6fb202fb84feb7717eb64d9d0a401be3ab3b12da93bb64c5ea48b150', '1990-09-23', 'USER', 1, GETDATE(), NULL, 62);
 
-INSERT INTO Usuario (Nombre, Apellido, Email, Contrasena, FechaNacimiento, Rol, Activo, FechaCreado, FechaModificado)
-VALUES ('Carlos', 'Rodriguez', 'carlos.rodriguez@example.com', 'de19c5a09d29c3c569d253248694bd386c3503e84f8457b6616b163d3a22e3df', '1982-12-05', 'USER', 1, GETDATE(), NULL);
+INSERT INTO Usuario (Nombre, Apellido, Email, Contrasena, FechaNacimiento, Rol, Activo, FechaCreado, FechaModificado, DigitoVerificador)
+VALUES ('Carlos', 'Rodriguez', 'carlos.rodriguez@example.com', 'de19c5a09d29c3c569d253248694bd386c3503e84f8457b6616b163d3a22e3df', '1982-12-05', 'USER', 1, GETDATE(), NULL, 67);
 
 
 CREATE TABLE Producto (

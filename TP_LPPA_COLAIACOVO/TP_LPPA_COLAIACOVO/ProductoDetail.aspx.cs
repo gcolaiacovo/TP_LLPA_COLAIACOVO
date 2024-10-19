@@ -1,4 +1,5 @@
-﻿using LPPA_Colaiacovo_Entidades.Clases;
+﻿using LPPA_Colaiacovo_BLL.Clases;
+using LPPA_Colaiacovo_Entidades.Clases;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,12 @@ using System.Web;
 
 public partial class ProductoDetail : System.Web.UI.Page
 {
+    private readonly BLLProducto bLLProducto;
+    public ProductoDetail()
+    {
+        bLLProducto = new BLLProducto();
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -14,9 +21,7 @@ public partial class ProductoDetail : System.Web.UI.Page
             int productoId;
             if (int.TryParse(Request.QueryString["IdProducto"], out productoId))
             {
-                var productosCookie = Request.Cookies["Productos"];
-                var productos = JsonConvert.DeserializeObject<List<Producto>>(productosCookie.Value);
-
+                var productos = bLLProducto.GetProductos();
                 var producto = productos.SingleOrDefault(t => t.Id == productoId);
 
                 if (producto != null)

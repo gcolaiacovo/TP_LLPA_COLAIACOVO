@@ -40,17 +40,16 @@ public partial class Administracion : System.Web.UI.Page
         try
         {
             usuarios = bLLUsuario.GetUsuarios();
-
             HttpCookie cookie = new HttpCookie("Usuarios");
             cookie.Value = JsonConvert.SerializeObject(usuarios);
             Response.Cookies.Add(cookie);
+            
             productos = bLLProducto.GetProductos();
-
             cookie = new HttpCookie("Productos");
             cookie.Value = JsonConvert.SerializeObject(productos);
             Response.Cookies.Add(cookie);
+            
             bitacoras = bLLBitacora.GetBitacoras().OrderByDescending(p => p.FechaCreado).ToList();
-
             cookie = new HttpCookie("Bitacoras");
             cookie.Value = JsonConvert.SerializeObject(bitacoras);
             Response.Cookies.Add(cookie);
@@ -100,8 +99,13 @@ public partial class Administracion : System.Web.UI.Page
     {
         try
         {
+            HttpCookie cookie = new HttpCookie("UsuarioLogueado");
+            cookie.Expires = DateTime.Now.AddDays(-1);
+
+            Response.Cookies.Add(cookie);
+
             databaseBackupService.CargarBackupBaseDeDatos();
-            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('El backup de la base de datos se recuperó correctamente.');", true);
+            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('El backup de la base de datos se recuperó correctamente. Por favor inicie sesión nuevamente'); window.href='/Login.aspx'", true);
         }
         catch (Exception ex)
         {

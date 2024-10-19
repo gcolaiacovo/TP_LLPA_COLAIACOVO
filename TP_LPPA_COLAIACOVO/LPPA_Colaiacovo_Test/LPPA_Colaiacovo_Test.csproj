@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLLUsuarioTest.cs" />
+    <Compile Include="DatabaseBackupServiceTest.cs" />
     <Compile Include="EncryptionServiceTest.cs" />
     <Compile Include="DALUsuarioTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

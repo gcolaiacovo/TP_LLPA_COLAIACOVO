@@ -16,34 +16,35 @@
 <body>
     <form runat="server">
         <uc:Navbar ID="Navbar1" runat="server" />
-        <div class="container">
-            <div class="video-container">
-                <video autoplay loop muted disablepictureinpicture class="video-bg">
-                    <source src="Resources/background-video.mp4" type="video/mp4" />
-                </video>
-                <div class="content">
-                    <div class="left-content">
-                        <h1>Suplementos deportivos</h1>
-                        <ul>
-                            <li>Mejora el rendimiento deportivo</li>
-                            <li>Aumenta la energía y la resistencia</li>
-                            <li>Ayuda en la recuperación muscular</li>
-                            <li>Facilita la pérdida de peso y la definición muscular</li>
-                            <li>Proporciona nutrientes esenciales para una óptima salud</li>
-                        </ul>
-                    </div>
-                    <div class="right-content">
-                        <h1>Entrenamiento personalizado</h1>
-                        <ul>
-                            <li>Entrenamiento adaptado a las necesidades individuales</li>
-                            <li>Planes de entrenamiento personalizados según objetivos</li>
-                            <li>Asesoramiento nutricional y dietético</li>
-                            <li>Monitoreo y seguimiento del progreso</li>
-                            <li>Motivación y apoyo continuo</li>
-                        </ul>
-                    </div>
+
+        <div class="video-container">
+            <video autoplay loop muted disablepictureinpicture src="Resources/background-video.mp4" class="video-bg">
+            </video>
+            <div class="content">
+                <div class="left-content">
+                    <h1>Suplementos deportivos</h1>
+                    <ul>
+                        <li>Mejora el rendimiento deportivo</li>
+                        <li>Aumenta la energía y la resistencia</li>
+                        <li>Ayuda en la recuperación muscular</li>
+                        <li>Facilita la pérdida de peso y la definición muscular</li>
+                        <li>Proporciona nutrientes esenciales para una óptima salud</li>
+                    </ul>
+                </div>
+                <div class="right-content">
+                    <h1>Entrenamiento personalizado</h1>
+                    <ul>
+                        <li>Entrenamiento adaptado a las necesidades individuales</li>
+                        <li>Planes de entrenamiento personalizados según objetivos</li>
+                        <li>Asesoramiento nutricional y dietético</li>
+                        <li>Monitoreo y seguimiento del progreso</li>
+                        <li>Motivación y apoyo continuo</li>
+                    </ul>
                 </div>
             </div>
+        </div>
+
+        <div class="container">
 
             <div class="separador grande">
                 <br />

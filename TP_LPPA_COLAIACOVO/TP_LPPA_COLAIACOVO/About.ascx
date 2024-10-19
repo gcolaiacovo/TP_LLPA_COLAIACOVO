@@ -34,8 +34,8 @@
 
     <div class="section">
         <h2>Nuestro Compromiso</h2>
-        <p>En [Nombre de la Empresa], nuestra misión es ayudarte a transformar tu vida a través de la salud y el fitness. Nos enorgullecemos de ofrecer productos de alta calidad y un servicio al cliente excepcional. Estamos aquí para apoyarte en cada paso de tu viaje, desde tu primer entrenamiento hasta tus mayores logros.</p>
-        <p>Gracias por elegir [Nombre de la Empresa]. Estamos emocionados de ser parte de tu camino hacia un estilo de vida más saludable y activo.</p>
+        <p>En Gymfit, nuestra misión es ayudarte a transformar tu vida a través de la salud y el fitness. Nos enorgullecemos de ofrecer productos de alta calidad y un servicio al cliente excepcional. Estamos aquí para apoyarte en cada paso de tu viaje, desde tu primer entrenamiento hasta tus mayores logros.</p>
+        <p>Gracias por elegir Gymfit. Estamos emocionados de ser parte de tu camino hacia un estilo de vida más saludable y activo.</p>
     </div>
 
     <div class="section">
