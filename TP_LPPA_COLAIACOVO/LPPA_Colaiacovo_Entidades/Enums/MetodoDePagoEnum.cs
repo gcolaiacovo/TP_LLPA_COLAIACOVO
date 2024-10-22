@@ -2,9 +2,9 @@
 {
     public enum MetodoDePagoEnum
     {
+        Ninguno = -1,
         Efectivo = 1,
-        TarjetaDebito = 2,
-        TarjetaCredito = 3,
-        Transferencia = 4,
+        TarjetaCredito = 2,
+        Transferencia = 3,
     }
 }

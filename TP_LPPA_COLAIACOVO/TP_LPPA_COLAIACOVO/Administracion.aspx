@@ -125,6 +125,61 @@
                         </tbody>
                     </table>
 
+                    <div id="divVentas">
+                    <asp:Button ID="btnExportar" runat="server" Text="Exportar Ventas" OnClick="btnExportar_Click" CssClass="btn btn-primary float-right" />
+                        <table id="tablaVentas">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Id Venta</th>
+                                    <th>Fecha</th>
+                                    <th>Método de Pago</th>
+                                    <th>Usuario</th>
+                                    <th>Producto</th>
+                                    <th>Cantidad</th>
+                                    <th>Monto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% foreach (var venta in ((List<LPPA_Colaiacovo_Entidades.Clases.Venta>)ViewState["Ventas"]))
+                                    { %>
+                                <tr style="font-weight: bold">
+                                    <td>
+                                        <input type="checkbox" name="ventaSeleccionada" value="<%= venta.Id %>" />
+                                    </td>
+                                    <td>
+                                        <%= venta.Id %>
+                                    </td>
+                                    <td>
+                                        <%= venta.FechaCreado.ToString("dd/MM/yyyy HH:mm") %> 
+                                    </td>
+                                    <td>
+                                        <%= venta.MetodoDePago.ToString() %>
+                                    </td>
+                                    <td>
+                                        <%= venta.Usuario != null ? venta.Usuario.Nombre : "-" %>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>$<%= venta.MontoTotal %> 
+                                    </td>
+                                </tr>
+
+                                <!-- Filas de productos de la venta -->
+                                <% foreach (var producto in venta.VentaProductos)
+                                    { %>
+                                <tr>
+                                    <td colspan="5"></td>
+                                    <td><%= producto.Producto.Nombre %></td>
+                                    <td><%= producto.Cantidad %></td>
+                                    <td>$<%= producto.Monto %></td>
+                                </tr>
+                                <% } %>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+
                     <div id="menuBackup">
                         <asp:Button ID="crearBackup" runat="server" Text="Crear Backup" OnClick="crearBackup_Click" />
                         <asp:Button ID="recuperarBackup" runat="server" Text="Recuperar Backup" OnClick="recuperarBackup_Click" />

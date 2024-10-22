@@ -1,6 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using LPPA_Colaiacovo_DAL.Clases;
-using LPPA_Colaiacovo_Services;
+﻿using LPPA_Colaiacovo_Services;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LPPA_Colaiacovo_Test
 {
@@ -12,7 +11,14 @@ namespace LPPA_Colaiacovo_Test
         }
 
         [TestMethod]
-        public void TestMethod1()
+        public void EncryptionService_Encriptar_Test1()
+        {
+            var contraseña = "carlosrodriguez123";
+            var resultado = EncryptionService.Encriptar(contraseña);
+        }
+
+        [TestMethod]
+        public void EncryptionService_Encriptar_Test2()
         {
             var contraseña = "carlosrodriguez123";
             var resultado = EncryptionService.Encriptar(contraseña);

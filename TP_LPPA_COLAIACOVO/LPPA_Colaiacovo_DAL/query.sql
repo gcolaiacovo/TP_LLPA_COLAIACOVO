@@ -18,13 +18,13 @@ CREATE TABLE Usuario (
 
 
 INSERT INTO Usuario (Nombre, Apellido, Email, Contrasena, FechaNacimiento, Rol, Activo, FechaCreado, FechaModificado, DigitoVerificador)
-VALUES ('Juan', 'Perez', 'juan.perez@example.com', 'bf733ae1731f8fe8ed936df6d6b6859b3e3946c8ebcd872ecb61e57b0bc8b64f', '1985-06-15', 'ADMIN', 1, GETDATE(), NULL, 99);
+VALUES ('Juan', 'Perez', 'juan.perez@example.com', 'bf733ae1731f8fe8ed936df6d6b6859b3e3946c8ebcd872ecb61e57b0bc8b64f', '1985-06-15', 'ADMIN', 1, GETDATE(), NULL, 112);
 
 INSERT INTO Usuario (Nombre, Apellido, Email, Contrasena, FechaNacimiento, Rol, Activo, FechaCreado, FechaModificado, DigitoVerificador)
-VALUES ('Ana', 'Garcia', 'ana.garcia@example.com', 'd8b659df6fb202fb84feb7717eb64d9d0a401be3ab3b12da93bb64c5ea48b150', '1990-09-23', 'USER', 1, GETDATE(), NULL, 62);
+VALUES ('Ana', 'Garcia', 'ana.garcia@example.com', 'd8b659df6fb202fb84feb7717eb64d9d0a401be3ab3b12da93bb64c5ea48b150', '1990-09-23', 'USER', 1, GETDATE(), NULL, 75);
 
 INSERT INTO Usuario (Nombre, Apellido, Email, Contrasena, FechaNacimiento, Rol, Activo, FechaCreado, FechaModificado, DigitoVerificador)
-VALUES ('Carlos', 'Rodriguez', 'carlos.rodriguez@example.com', 'de19c5a09d29c3c569d253248694bd386c3503e84f8457b6616b163d3a22e3df', '1982-12-05', 'USER', 1, GETDATE(), NULL, 67);
+VALUES ('Carlos', 'Rodriguez', 'carlos.rodriguez@example.com', 'de19c5a09d29c3c569d253248694bd386c3503e84f8457b6616b163d3a22e3df', '1982-12-05', 'USER', 1, GETDATE(), NULL, 80);
 
 
 CREATE TABLE Producto (
@@ -87,4 +87,17 @@ CREATE TABLE Venta (
     Activo BIT NOT NULL DEFAULT 1,
     FechaCreado DATETIME NOT NULL DEFAULT GETDATE(),
     FechaModificado DATETIME
+);
+
+CREATE TABLE VentaProducto (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    IdVenta INT NOT NULL,           
+    IdProducto INT NOT NULL,        
+    Cantidad INT NOT NULL,          
+    Monto DECIMAL(18, 2) NOT NULL,   
+    Activo BIT NOT NULL DEFAULT 1,   
+    FechaCreado DATETIME NOT NULL DEFAULT GETDATE(),
+    FechaModificado DATETIME NULL,   
+    FOREIGN KEY (IdVenta) REFERENCES Venta(Id) ON DELETE CASCADE,
+    FOREIGN KEY (IdProducto) REFERENCES Producto(Id) ON DELETE CASCADE
 );

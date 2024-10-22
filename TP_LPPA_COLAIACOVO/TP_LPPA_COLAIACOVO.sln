@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TP_LPPA_COLAIACOVO", "TP_LPPA_COLAIACOVO\", "{62363073-CE93-4823-A1BA-AC24D31ADA88}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9232E586-7B35-4EC3-84B3-B8A732D0155A} = {9232E586-7B35-4EC3-84B3-B8A732D0155A}
+	EndProjectSection
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.7.2"
 		ProjectReferences = "{2ec959d9-2d50-4844-a496-aa1e85f81ae0}|LPPA_Colaiacovo_BLL.dll;{8472e536-b714-4ca6-ac5d-48dec063537a}|LPPA_Colaiacovo_Entidades.dll;{707DB19A-8DEE-4F92-8830-7782E83A8FBA}|LPPA_Colaiacovo_DAL.dll;{3B87497D-E39F-47D7-B199-C34112AC5FFF}|LPPA_Colaiacovo_Mapper.dll;{02DD89E0-3354-433F-BE4E-3C250A653E82}|LPPA_Colaiacovo_Services.dll;"
@@ -37,6 +40,29 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LPPA_Colaiacovo_BLL", "LPPA_Colaiacovo_BLL\LPPA_Colaiacovo_BLL.csproj", "{2EC959D9-2D50-4844-A496-AA1E85F81AE0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LPPA_Colaiacovo_Services", "LPPA_Colaiacovo_Services\LPPA_Colaiacovo_Services.csproj", "{02DD89E0-3354-433F-BE4E-3C250A653E82}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "LPPA_WebService", "LPPA_WebService\", "{9232E586-7B35-4EC3-84B3-B8A732D0155A}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.7.2"
+		ProjectReferences = "{8472e536-b714-4ca6-ac5d-48dec063537a}|LPPA_Colaiacovo_Entidades.dll;{2ec959d9-2d50-4844-a496-aa1e85f81ae0}|LPPA_Colaiacovo_BLL.dll;{707DB19A-8DEE-4F92-8830-7782E83A8FBA}|LPPA_Colaiacovo_DAL.dll;{3B87497D-E39F-47D7-B199-C34112AC5FFF}|LPPA_Colaiacovo_Mapper.dll;{02DD89E0-3354-433F-BE4E-3C250A653E82}|LPPA_Colaiacovo_Services.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_55415"
+		Debug.AspNetCompiler.PhysicalPath = "LPPA_WebService\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_55415\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_55415"
+		Release.AspNetCompiler.PhysicalPath = "LPPA_WebService\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_55415\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "55415"
+		SlnRelativePath = "LPPA_WebService\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,6 +98,10 @@ Global
 		{02DD89E0-3354-433F-BE4E-3C250A653E82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02DD89E0-3354-433F-BE4E-3C250A653E82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02DD89E0-3354-433F-BE4E-3C250A653E82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9232E586-7B35-4EC3-84B3-B8A732D0155A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9232E586-7B35-4EC3-84B3-B8A732D0155A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9232E586-7B35-4EC3-84B3-B8A732D0155A}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{9232E586-7B35-4EC3-84B3-B8A732D0155A}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

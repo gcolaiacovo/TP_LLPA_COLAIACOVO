@@ -10,7 +10,7 @@ namespace LPPA_Colaiacovo_Entidades.Clases
         public int Id { get; set; }
         public int? IdUsuario { get; set; }
         public Usuario Usuario { get; set; }
-        public double MontoTotal { get; set; }
+        public decimal MontoTotal { get; set; }
         public MetodoDePagoEnum MetodoDePago { get; set; }
         public bool Activo { get; set; } = true;
         public DateTime FechaCreado { get; set; } = DateTime.Now;

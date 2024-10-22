@@ -33,6 +33,7 @@
                     <p>
                         <asp:Label ID="lblStock" runat="server" CssClass="product-stock"></asp:Label>
                     </p>
+                    <asp:TextBox MaxLength="2" TextMode="Number" runat="server" ID="txtCantidad" CssClass="product-cant" Text="1" /> 
                     <asp:Button ID="Button1" runat="server" Text="Agregar al carrito" CssClass="btn-add-to-cart" OnClick="btnAgregarCarrito_Click" />
                 </div>
             </div>

@@ -24,7 +24,7 @@ namespace LPPA_Colaiacovo_Mapper.Clases
                     {
                         Id = ventaId,
                         IdUsuario = MapperHelper.GetDataType<int?>(sqlDataReader, "IdUsuario"),
-                        MontoTotal = MapperHelper.GetDataType<double>(sqlDataReader, "MontoTotal"),
+                        MontoTotal = MapperHelper.GetDataType<decimal>(sqlDataReader, "MontoTotal"),
                         MetodoDePago = MapperHelper.GetDataType<MetodoDePagoEnum>(sqlDataReader, "MetodoDePago"),
                         Activo = MapperHelper.GetDataType<bool>(sqlDataReader, "Activo"),
                         FechaCreado = MapperHelper.GetDataType<DateTime>(sqlDataReader, "FechaCreado"),
@@ -39,7 +39,7 @@ namespace LPPA_Colaiacovo_Mapper.Clases
                     var ventaProducto = new VentaProducto
                     {
                         Id = MapperHelper.GetDataType<int>(sqlDataReader, "Id"),
-                        IdVenta = ventaId,
+                        IdVenta = MapperHelper.GetDataType<int>(sqlDataReader, "IdVenta"),
                         IdProducto = MapperHelper.GetDataType<int>(sqlDataReader, "IdProducto"),
                         Cantidad = MapperHelper.GetDataType<int>(sqlDataReader, "Cantidad"),
                         Monto = MapperHelper.GetDataType<decimal>(sqlDataReader, "Monto"),

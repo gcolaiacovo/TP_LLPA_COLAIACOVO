@@ -16,7 +16,7 @@ namespace LPPA_Colaiacovo_Test
         [TestMethod]
         public void CalcularDigitoVerificadorTest()
         {
-            var usuario = BLLUsuario.GetUsuario(3);
+            var usuario = BLLUsuario.GetUsuario(4);
 
             var resultado = BLLUsuario.CalcularChecksum(usuario);
          }

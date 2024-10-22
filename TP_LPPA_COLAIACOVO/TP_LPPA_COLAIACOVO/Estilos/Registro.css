@@ -54,3 +54,7 @@ h2 {
     text-align: center;
     text-decoration: none;
 }
+
+.float-right {
+    float: right;
+}

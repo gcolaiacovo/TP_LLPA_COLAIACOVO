@@ -5,13 +5,13 @@
         <span class="close" onclick="cerrarModal()">&times;</span>
         <h2>Cambiar Contraseña</h2>
         <label for="currentPassword">Contraseña Actual:</label>
-        <asp:TextBox ID="currentPassword" runat="server" TextMode="Password" placeholder="Contraseña Actual" CssClass="form-control" Required="true" />
+        <asp:TextBox ID="currentPassword" runat="server" TextMode="Password" placeholder="Contraseña Actual" CssClass="form-control" />
         <label for="newPassword">Nueva Contraseña:</label>
-        <asp:TextBox ID="newPassword" runat="server" TextMode="Password" placeholder="Nueva Contraseña" CssClass="form-control" Required="true" />
+        <asp:TextBox ID="newPassword" runat="server" TextMode="Password" placeholder="Nueva Contraseña" CssClass="form-control"/>
         <asp:RegularExpressionValidator ID="revNewPassword" runat="server" ControlToValidate="newPassword" ValidationExpression="^.{8,}$" ErrorMessage="La contraseña debe tener al menos 8 caracteres" Display="Dynamic" CssClass="text-danger" />
 
         <label for="confirmNewPassword">Confirmar Nueva Contraseña:</label>
-        <asp:TextBox ID="confirmNewPassword" runat="server" TextMode="Password" placeholder="Confirmar Nueva Contraseña" CssClass="form-control" Required="true" />
+        <asp:TextBox ID="confirmNewPassword" runat="server" TextMode="Password" placeholder="Confirmar Nueva Contraseña" CssClass="form-control" />
         <asp:CompareValidator ID="cvConfirmPassword" runat="server" ControlToCompare="newPassword" ControlToValidate="confirmNewPassword" ErrorMessage="Las contraseñas no coinciden" Display="Dynamic" CssClass="text-danger" />
         <asp:Button ID="btnCambiarContraseña" runat="server" Text="Cambiar Contraseña" OnClick="btnCambiarContraseña_Click" CssClass="btn btn-primary" />
 

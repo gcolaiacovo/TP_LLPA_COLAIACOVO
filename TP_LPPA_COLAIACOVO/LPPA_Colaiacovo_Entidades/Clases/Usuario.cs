@@ -36,5 +36,10 @@ namespace LPPA_Colaiacovo_Entidades.Clases
         public DateTime FechaCreado { get; set; } = DateTime.Now;
         public DateTime? FechaModificado { get; set; }
         public int DigitoVerificador { get; set; }
+
+        public string GetName()
+        {
+            return Nombre + " " + Apellido;
+        }
     }
 }

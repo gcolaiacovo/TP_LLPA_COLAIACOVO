@@ -5,7 +5,9 @@ using LPPA_Colaiacovo_Services.Utilidades;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
+using System.Text;
 
 namespace LPPA_Colaiacovo_DAL.Clases
 {
@@ -19,7 +21,7 @@ namespace LPPA_Colaiacovo_DAL.Clases
 
         public void Delete(int id)
         {
-            var command = "DELETE FROM Ventas WHERE Id = @Id";
+            var command = "DELETE FROM Venta WHERE Id = @Id";
             using (SqlConnection connection = new SqlConnection(SQLHelper.GetConnectionString()))
             {
                 connection.Open();
@@ -35,7 +37,7 @@ namespace LPPA_Colaiacovo_DAL.Clases
         {
             var command = @"
                 SELECT v.*, vp.*
-                FROM Ventas v
+                FROM Venta v
                 LEFT JOIN VentaProducto vp ON v.Id = vp.IdVenta
                 WHERE v.Id = @Id";
 
@@ -55,7 +57,7 @@ namespace LPPA_Colaiacovo_DAL.Clases
         {
             var command = @"
                 SELECT v.*, vp.*
-                FROM Ventas v
+                FROM Venta v
                 LEFT JOIN VentaProducto vp ON v.Id = vp.IdVenta";
 
             using (SqlConnection connection = new SqlConnection(SQLHelper.GetConnectionString()))
@@ -73,7 +75,7 @@ namespace LPPA_Colaiacovo_DAL.Clases
         {
             var command = @"
                 SELECT v.*, vp.*
-                FROM Ventas v
+                FROM Venta v
                 LEFT JOIN VentaProducto vp ON v.Id = vp.IdVenta
                 WHERE v.IdUsuario = @UsuarioId";
 
@@ -91,10 +93,6 @@ namespace LPPA_Colaiacovo_DAL.Clases
 
         public void Save(Venta entity)
         {
-            var command = entity.Id == 0 ?
-                "INSERT INTO Ventas (IdUsuario, MontoTotal, MetodoDePago, Activo, FechaCreado, FechaModificado) VALUES (@IdUsuario, @MontoTotal, @MetodoDePago, @Activo, @FechaCreado, @FechaModificado)" :
-                "UPDATE Ventas SET IdUsuario = @IdUsuario, MontoTotal = @MontoTotal, MetodoDePago = @MetodoDePago, Activo = @Activo, FechaModificado = @FechaModificado WHERE Id = @Id";
-
             using (SqlConnection connection = new SqlConnection(SQLHelper.GetConnectionString()))
             {
                 connection.Open();
@@ -102,46 +100,30 @@ namespace LPPA_Colaiacovo_DAL.Clases
                 {
                     try
                     {
-                        using (SqlCommand sqlCommand = new SqlCommand(command, connection, transaction))
-                        {
-                            sqlCommand.Parameters.AddWithValue("@IdUsuario", (object)entity.IdUsuario ?? DBNull.Value);
-                            sqlCommand.Parameters.AddWithValue("@MontoTotal", entity.MontoTotal);
-                            sqlCommand.Parameters.AddWithValue("@MetodoDePago", entity.MetodoDePago);
-                            sqlCommand.Parameters.AddWithValue("@Activo", entity.Activo);
-                            sqlCommand.Parameters.AddWithValue("@FechaCreado", entity.FechaCreado);
-                            sqlCommand.Parameters.AddWithValue("@FechaModificado", (object)entity.FechaModificado ?? DBNull.Value);
+                        var sqlBuilder = new StringBuilder();
+                        sqlBuilder.AppendLine("DECLARE @IdVenta INT;"); 
 
-                            if (entity.Id != 0)
-                            {
-                                sqlCommand.Parameters.AddWithValue("@Id", entity.Id);
-                            }
+                        sqlBuilder.AppendLine("INSERT INTO Venta (IdUsuario, MontoTotal, MetodoDePago, Activo, FechaCreado) ");
+                        sqlBuilder.AppendLine("VALUES (@IdUsuario, @MontoTotal, @MetodoDePago, @Activo, @FechaCreado);");
+                        sqlBuilder.AppendLine("SET @IdVenta = SCOPE_IDENTITY();");
 
-                            sqlCommand.ExecuteNonQuery();
-                        }
+                        sqlBuilder.AppendLine("DECLARE @VentaProductos TABLE (IdProducto INT, Cantidad INT, Monto DECIMAL(18, 2), Activo BIT, FechaCreado DATETIME);");
 
                         foreach (var ventaProducto in entity.VentaProductos)
                         {
-                            var commandVentaProducto = ventaProducto.Id == 0 ?
-                                "INSERT INTO VentaProducto (IdVenta, IdProducto, Cantidad, Monto, Activo, FechaCreado, FechaModificado) VALUES (@IdVenta, @IdProducto, @Cantidad, @Monto, @Activo, @FechaCreado, @FechaModificado)" :
-                                "UPDATE VentaProducto SET IdVenta = @IdVenta, IdProducto = @IdProducto, Cantidad = @Cantidad, Monto = @Monto, Activo = @Activo, FechaModificado = @FechaModificado WHERE Id = @Id";
+                            sqlBuilder.AppendLine("INSERT INTO VentaProducto (IdVenta, IdProducto, Cantidad, Monto, Activo, FechaCreado) VALUES ");
+                            sqlBuilder.AppendLine($"(@IdVenta, {ventaProducto.IdProducto}, {ventaProducto.Cantidad}, {ventaProducto.Monto.ToString(CultureInfo.InvariantCulture)}, {(ventaProducto.Activo ? 1 : 0)}, '{ventaProducto.FechaCreado.ToString("yyyy-MM-dd HH:mm:ss")}');");
+                        }
 
-                            using (SqlCommand sqlCommandVentaProducto = new SqlCommand(commandVentaProducto, connection, transaction))
-                            {
-                                sqlCommandVentaProducto.Parameters.AddWithValue("@IdVenta", entity.Id);
-                                sqlCommandVentaProducto.Parameters.AddWithValue("@IdProducto", ventaProducto.IdProducto);
-                                sqlCommandVentaProducto.Parameters.AddWithValue("@Cantidad", ventaProducto.Cantidad);
-                                sqlCommandVentaProducto.Parameters.AddWithValue("@Monto", ventaProducto.Monto);
-                                sqlCommandVentaProducto.Parameters.AddWithValue("@Activo", ventaProducto.Activo);
-                                sqlCommandVentaProducto.Parameters.AddWithValue("@FechaCreado", ventaProducto.FechaCreado);
-                                sqlCommandVentaProducto.Parameters.AddWithValue("@FechaModificado", (object)ventaProducto.FechaModificado ?? DBNull.Value);
+                        using (SqlCommand sqlCommand = new SqlCommand(sqlBuilder.ToString(), connection, transaction))
+                        {
+                            sqlCommand.Parameters.AddWithValue("@IdUsuario", (object)entity.IdUsuario ?? DBNull.Value);
+                            sqlCommand.Parameters.AddWithValue("@MontoTotal", entity.MontoTotal);
+                            sqlCommand.Parameters.AddWithValue("@MetodoDePago", (int)entity.MetodoDePago);
+                            sqlCommand.Parameters.AddWithValue("@Activo", entity.Activo);
+                            sqlCommand.Parameters.AddWithValue("@FechaCreado", entity.FechaCreado);
 
-                                if (ventaProducto.Id != 0)
-                                {
-                                    sqlCommandVentaProducto.Parameters.AddWithValue("@Id", ventaProducto.Id);
-                                }
-
-                                sqlCommandVentaProducto.ExecuteNonQuery();
-                            }
+                            sqlCommand.ExecuteNonQuery();
                         }
 
                         transaction.Commit();

@@ -58,12 +58,16 @@ public partial class ProductoDetail : System.Web.UI.Page
             productosEnCarrito = JsonConvert.DeserializeObject<List<int>>(productosCookie.Value);
         }
 
-        productosEnCarrito.Add(((Producto)ViewState["Producto"]).Id);
+        var cant = Convert.ToInt32(txtCantidad.Text);
+        for (int i = 0; i < cant; i++)
+        {
+            productosEnCarrito.Add(((Producto)ViewState["Producto"]).Id);
+        }
 
         // Guardar la lista actualizada en la cookie
         var cookie = new HttpCookie("ItemsEnCarrito");
         cookie.Value = JsonConvert.SerializeObject(productosEnCarrito);
-        Response.Cookies.Add(cookie);
+        Response.Cookies.Set(cookie);
 
         ClientScript.RegisterStartupScript(this.GetType(), "UpdateItemCount", "actualizarItemsCarrito();", true);
     }

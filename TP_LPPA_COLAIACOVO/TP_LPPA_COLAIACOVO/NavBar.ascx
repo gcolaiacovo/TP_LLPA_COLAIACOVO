@@ -89,8 +89,10 @@
 
     function actualizarItemsCarrito() {
         var productosCookie = getCookie("ItemsEnCarrito");
-        var cantidad = productosCookie ? JSON.parse(productosCookie).length : 0;
-        document.getElementById('cartItemCount').innerText = cantidad.toString();
+        var cookie = productosCookie ? JSON.parse(productosCookie) : [];
+        const distintos = new Set(cookie);
+        const cantidadDistintos = distintos.size;
+        document.getElementById('cartItemCount').innerText = cantidadDistintos.toString();
     }
 
     function getCookie(name) {
