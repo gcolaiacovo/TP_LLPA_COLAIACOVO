@@ -1,6 +1,7 @@
 ﻿using LPPA_Colaiacovo_Services.Utilidades;
 using System;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace LPPA_Colaiacovo_Services
 {
@@ -8,14 +9,30 @@ namespace LPPA_Colaiacovo_Services
     {
         public void CrearBackupBaseDeDatos()
         {
-            var query = $"BACKUP DATABASE [GColaiacovoLPPA] TO DISK = 'C:\\backups\\backup.bak' WITH INIT";
-            using (SqlConnection connection = new SqlConnection(SQLHelper.GetConnectionString()))
+            var fechaHora = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+            var backupPath = $"C:\\backups\\backup.bak";
+
+            if (!Directory.Exists("C:\\backups\\"))
             {
-                connection.Open();
-                using (SqlCommand command = new SqlCommand(query, connection))
+                Directory.CreateDirectory("C:\\backups\\");
+            }
+
+            var query = $"BACKUP DATABASE [GColaiacovoLPPA] TO DISK = '{backupPath}' WITH INIT";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(SQLHelper.GetConnectionString()))
                 {
-                    command.ExecuteNonQuery();
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
                 }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"Error al crear el backup: {ex.Message}");
             }
         }
 
