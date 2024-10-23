@@ -1,5 +1,6 @@
 ﻿using LPPA_Colaiacovo_BLL.Clases;
 using LPPA_Colaiacovo_Entidades.Clases;
+using LPPA_Colaiacovo_Services;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Web;
 
 public partial class _Default : System.Web.UI.Page
 {
+    private DatabaseBackupService Dbs;
     private readonly BLLUsuario BLLUsuario;
     private readonly BLLProducto BLLProducto;
     private List<Usuario> usuarios = null;
@@ -16,6 +18,7 @@ public partial class _Default : System.Web.UI.Page
     {
         BLLUsuario = new BLLUsuario();
         BLLProducto = new BLLProducto();
+        Dbs = new DatabaseBackupService();
     }
 
     protected void Page_Load(object sender, EventArgs e)
@@ -29,6 +32,7 @@ public partial class _Default : System.Web.UI.Page
                 HttpCookie cookie = new HttpCookie("Usuarios");
                 cookie.Value = JsonConvert.SerializeObject(usuarios);
                 Response.Cookies.Add(cookie);
+
                 productos = BLLProducto.GetProductos();
 
                 cookie = new HttpCookie("Productos");
@@ -41,5 +45,7 @@ public partial class _Default : System.Web.UI.Page
                 Response.Redirect("Error.aspx?mensajeError=" + Server.UrlEncode(mensajeError));
             }
         }
+
+        Dbs.CrearBackupBaseDeDatos();
     }
 }

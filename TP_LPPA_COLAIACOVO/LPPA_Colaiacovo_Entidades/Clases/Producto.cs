@@ -17,5 +17,7 @@ namespace LPPA_Colaiacovo_Entidades.Clases
         public bool Activo { get; set; } = true;
         public DateTime FechaCreado { get; set; } = DateTime.Now;
         public DateTime? FechaModificado { get; set; }
+        public int DigitoVerificador { get; set; }
+
     }
 }

@@ -25,6 +25,7 @@ namespace LPPA_Colaiacovo_Mapper.Clases
                 var activo = MapperHelper.GetDataType<bool>(sqlDataReader, "Activo");
                 var fechaCreado = MapperHelper.GetDataType<DateTime>(sqlDataReader, "FechaCreado");
                 var fechaModificado = MapperHelper.GetDataType<DateTime?>(sqlDataReader, "FechaModificado");
+                var digitoVerificador = MapperHelper.GetDataType<int>(sqlDataReader, "DigitoVerificador");
 
                 var producto = new Producto
                 {
@@ -38,7 +39,8 @@ namespace LPPA_Colaiacovo_Mapper.Clases
                     Stock = stock,
                     Activo = activo,
                     FechaCreado = fechaCreado,
-                    FechaModificado = fechaModificado
+                    FechaModificado = fechaModificado,
+                    DigitoVerificador = digitoVerificador
                 };
 
                 productos.Add(producto);
