@@ -1,12 +1,11 @@
 ﻿using LPPA_Colaiacovo_BLL.Clases;
-using LPPA_Colaiacovo_DAL.Clases;
 using LPPA_Colaiacovo_Entidades.Clases;
 using LPPA_Colaiacovo_Entidades.DTO;
 using LPPA_Colaiacovo_Entidades.Enums;
+using LPPA_Colaiacovo_Entidades.Excepciones;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -14,12 +13,14 @@ using System.Web.UI.WebControls;
 
 public partial class FinalizarCompra : System.Web.UI.Page
 {
+    private readonly BLLUsuario bLLUsuario;
     private readonly BLLProducto bLLProducto;
     private readonly BLLBitacora bLLBitacora;
     private readonly BLLVenta bLLVenta;
 
     public FinalizarCompra()
     {
+        bLLUsuario = new BLLUsuario();
         bLLBitacora = new BLLBitacora();
         bLLProducto = new BLLProducto();
         bLLVenta = new BLLVenta();
@@ -80,40 +81,90 @@ public partial class FinalizarCompra : System.Web.UI.Page
 
     private List<ProductoCarritoDTO> GetProductosEnCarrito()
     {
-        var itemsEnCarritoCookie = HttpContext.Current.Request.Cookies["ItemsEnCarrito"];
-        List<int> productoIdsEnCarrito = new List<int>();
-
-        if (itemsEnCarritoCookie != null)
+        try
         {
-            productoIdsEnCarrito = JsonConvert.DeserializeObject<List<int>>(itemsEnCarritoCookie.Value);
+            var itemsEnCarritoCookie = HttpContext.Current.Request.Cookies["ItemsEnCarrito"];
+            List<int> productoIdsEnCarrito = new List<int>();
+
+            if (itemsEnCarritoCookie != null)
+            {
+                productoIdsEnCarrito = JsonConvert.DeserializeObject<List<int>>(itemsEnCarritoCookie.Value);
+            }
+
+            StringBuilder sb = new StringBuilder();
+            try
+            {
+                var usuarios = bLLUsuario.GetUsuarios();
+            }
+            catch (DigitoVerificadorException ex)
+            {
+                var ids = ex.Ids;
+                sb.AppendLine("Error en digitos verificadores: ");
+                ids.ForEach(id => { sb.AppendLine(ex.EntidadTipo + " con ID " + id); });
+            }
+
+            var productos = new List<Producto>();
+            try
+            {
+                productos = bLLProducto.GetProductos();
+            }
+            catch (DigitoVerificadorException ex)
+            {
+                var ids = ex.Ids;
+                if (sb.Length == 0)
+                {
+                    sb.AppendLine("Error en digitos verificadores: ");
+                }
+                ids.ForEach(id => { sb.AppendLine(ex.EntidadTipo + " con ID " + id); });
+            }
+
+            if (sb.Length > 0)
+            {
+                string mensajeFormateado = sb.ToString().Replace(Environment.NewLine, "<br/>");
+                string mensajeCodificado = HttpUtility.HtmlEncode(mensajeFormateado);
+                Response.Redirect("Error.aspx?mensajeError=" + Server.UrlEncode(mensajeCodificado));
+            }
+
+            if (productos.Any())
+            {
+                var productosEnCarrito = productoIdsEnCarrito
+                    .GroupBy(p => p)
+                    .Select(group => new
+                    {
+                        Producto = productos.FirstOrDefault(t => t.Id == group.Key),
+                        Cantidad = group.Count()
+                    })
+                    .Select(g => new ProductoCarritoDTO
+                    {
+                        Id = g.Producto.Id,
+                        Nombre = g.Producto.Nombre,
+                        Descripcion = g.Producto.Descripcion,
+                        Marca = g.Producto.Marca,
+                        CategoriaId = g.Producto.CategoriaId,
+                        Precio = g.Producto.Precio,
+                        UrlImagen = g.Producto.UrlImagen,
+                        Cantidad = g.Cantidad,
+                        PrecioTotal = g.Producto.Precio * g.Cantidad
+                    })
+                    .ToList();
+
+                return productosEnCarrito;
+            }
         }
-
-        var productos = bLLProducto.GetProductos();
-
-        if (productos.Any())
+        catch (DigitoVerificadorException ex)
         {
-            var productosEnCarrito = productoIdsEnCarrito
-                .GroupBy(p => p)
-                .Select(group => new
-                {
-                    Producto = productos.FirstOrDefault(t => t.Id == group.Key),
-                    Cantidad = group.Count()
-                })
-                .Select(g => new ProductoCarritoDTO
-                {
-                    Id = g.Producto.Id,
-                    Nombre = g.Producto.Nombre,
-                    Descripcion = g.Producto.Descripcion,
-                    Marca = g.Producto.Marca,
-                    CategoriaId = g.Producto.CategoriaId,
-                    Precio = g.Producto.Precio,
-                    UrlImagen = g.Producto.UrlImagen,
-                    Cantidad = g.Cantidad,
-                    PrecioTotal = g.Producto.Precio * g.Cantidad
-                })
-                .ToList();
-
-            return productosEnCarrito;
+            var ids = ex.Ids;
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Error en digitos verificadores: ");
+            ids.ForEach(id => { sb.AppendLine(ex.EntidadTipo + " con ID " + id); });
+            string mensajeFormateado = sb.ToString().Replace(Environment.NewLine, "<br/>");
+            string mensajeCodificado = HttpUtility.HtmlEncode(mensajeFormateado);
+            Response.Redirect("Error.aspx?mensajeError=" + Server.UrlEncode(mensajeCodificado));
+        }
+        catch (Exception ex)
+        {
+            var mensajeError = ex.Message;
+            Response.Redirect("Error.aspx?mensajeError=" + Server.UrlEncode(mensajeError));
         }
 
         return null;
@@ -201,7 +252,7 @@ public partial class FinalizarCompra : System.Web.UI.Page
         venta.MontoTotal = Convert.ToDecimal(venta.VentaProductos.Sum(t => t.Monto));
 
         bLLVenta.Save(venta);
-        
+
         if (Request.Cookies["ItemsEnCarrito"] != null)
         {
             HttpCookie removecookie = new HttpCookie("ItemsEnCarrito");

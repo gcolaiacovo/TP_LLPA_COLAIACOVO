@@ -46,65 +46,77 @@ public partial class Administracion : System.Web.UI.Page
             var mensajeError = "No tiene permisos suficientes para acceder a esta área!";
             Response.Redirect("Error.aspx?mensajeError=" + Server.UrlEncode(mensajeError));
         }
-
+        
+        HttpCookie cookie;
+        StringBuilder sb = new StringBuilder();
         try
         {
             usuarios = bLLUsuario.GetUsuarios();
-            HttpCookie cookie = new HttpCookie("Usuarios");
+            cookie = new HttpCookie("Usuarios");
             cookie.Value = JsonConvert.SerializeObject(usuarios);
             Response.Cookies.Set(cookie);
-
-            productos = bLLProducto.GetProductos();
-            cookie = new HttpCookie("Productos");
-            cookie.Value = JsonConvert.SerializeObject(productos);
-            Response.Cookies.Set(cookie);
-
-            bitacoras = bLLBitacora.GetBitacoras().OrderByDescending(p => p.FechaCreado).ToList();
-            cookie = new HttpCookie("Bitacoras");
-            cookie.Value = JsonConvert.SerializeObject(bitacoras);
-            Response.Cookies.Set(cookie);
-
-            ventas = bLLVenta.GetAll().OrderByDescending(p => p.FechaCreado).ToList();
-
-            ventas.ForEach(v =>
-            {
-                v.VentaProductos.ForEach(vp =>
-                {
-                    vp.Producto = productos.FirstOrDefault(p => p.Id == vp.IdProducto);
-                });
-                v.Usuario = usuarios.FirstOrDefault(u => u.Id == v.IdUsuario);
-            });
-
-            cookie = new HttpCookie("Ventas");
-            cookie.Value = JsonConvert.SerializeObject(ventas);
-            Response.Cookies.Set(cookie);
-
-            foreach (var bitacora in bitacoras)
-            {
-                if (!bitacora.IdUsuario.HasValue || bitacora.IdUsuario == 0)
-                {
-                    bitacora.Usuario = new Usuario();
-                    continue;
-                }
-
-                var usuario = usuarios.FirstOrDefault(o => o.Id == bitacora.IdUsuario.Value);
-                bitacora.Usuario = usuario;
-            }
         }
         catch (DigitoVerificadorException ex)
         {
             var ids = ex.Ids;
-            StringBuilder sb = new StringBuilder();
             sb.AppendLine("Error en digitos verificadores: ");
             ids.ForEach(id => { sb.AppendLine(ex.EntidadTipo + " con ID " + id); });
+        }
+
+        try
+        {
+            productos = bLLProducto.GetProductos();
+            cookie = new HttpCookie("Productos");
+            cookie.Value = JsonConvert.SerializeObject(productos);
+            Response.Cookies.Set(cookie);
+        }
+        catch (DigitoVerificadorException ex)
+        {
+            var ids = ex.Ids;
+            if (sb.Length == 0)
+            {
+                sb.AppendLine("Error en digitos verificadores: ");
+            }
+            ids.ForEach(id => { sb.AppendLine(ex.EntidadTipo + " con ID " + id); });
+        }
+
+        if (sb.Length > 0)
+        {
             string mensajeFormateado = sb.ToString().Replace(Environment.NewLine, "<br/>");
             string mensajeCodificado = HttpUtility.HtmlEncode(mensajeFormateado);
             Response.Redirect("Error.aspx?mensajeError=" + Server.UrlEncode(mensajeCodificado));
         }
-        catch (Exception ex)
+
+        bitacoras = bLLBitacora.GetBitacoras().OrderByDescending(p => p.FechaCreado).ToList();
+        cookie = new HttpCookie("Bitacoras");
+        cookie.Value = JsonConvert.SerializeObject(bitacoras);
+        Response.Cookies.Set(cookie);
+
+        ventas = bLLVenta.GetAll().OrderByDescending(p => p.FechaCreado).ToList();
+
+        ventas.ForEach(v =>
         {
-            var mensajeError = ex.Message;
-            Response.Redirect("Error.aspx?mensajeError=" + Server.UrlEncode(mensajeError));
+            v.VentaProductos.ForEach(vp =>
+            {
+                vp.Producto = productos.FirstOrDefault(p => p.Id == vp.IdProducto);
+            });
+            v.Usuario = usuarios.FirstOrDefault(u => u.Id == v.IdUsuario);
+        });
+
+        cookie = new HttpCookie("Ventas");
+        cookie.Value = JsonConvert.SerializeObject(ventas);
+        Response.Cookies.Set(cookie);
+
+        foreach (var bitacora in bitacoras)
+        {
+            if (!bitacora.IdUsuario.HasValue || bitacora.IdUsuario == 0)
+            {
+                bitacora.Usuario = new Usuario();
+                continue;
+            }
+
+            var usuario = usuarios.FirstOrDefault(o => o.Id == bitacora.IdUsuario.Value);
+            bitacora.Usuario = usuario;
         }
 
         ViewState["Bitacoras"] = bitacoras;

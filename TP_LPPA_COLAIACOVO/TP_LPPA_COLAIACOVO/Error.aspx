@@ -17,9 +17,14 @@
                 </h2>
 
                 <img src="Resources/errorIcon.png" class="logo" />
-                <asp:Literal ID="mensajeError" runat="server" Mode="PassThrough"></asp:Literal>
+                <div style="font-family: Roboto; text-align: center">
+                    <asp:Literal ID="mensajeError" runat="server" Mode="PassThrough"></asp:Literal>
+                </div>
 
+                <% if (IsAdmin)
+                    { %>
                 <asp:Button ID="btnRestaurar" runat="server" Text="Restaurar" OnClick="btnRestaurar_Click" class="restaurar-button" />
+                <% } %>
             </div>
         </div>
     </form>

@@ -1,14 +1,34 @@
-﻿using LPPA_Colaiacovo_Services;
+﻿using LPPA_Colaiacovo_Mapper;
+using LPPA_Colaiacovo_Services;
+using Newtonsoft.Json;
 using System;
 using System.Web;
 
 public partial class Error : System.Web.UI.Page
 {
+    public bool IsAdmin { get; private set; }
+
 
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
+            var cookie = Request.Cookies["UsuarioLogueado"];
+            if (cookie != null)
+            {
+                try
+                {
+                    var usuario = JsonConvert.DeserializeObject<LPPA_Colaiacovo_Entidades.DTO.UsuarioDTO>(cookie.Value);
+                    if (usuario != null && usuario.Rol == Constantes.ROL_ADMIN)
+                    {
+                        IsAdmin = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+
             var msjError = Request.QueryString["mensajeError"];
             if (!string.IsNullOrEmpty(msjError))
             {
@@ -29,8 +49,6 @@ public partial class Error : System.Web.UI.Page
         }
         catch (Exception ex) { }
         {
-
         }
-        
     }
 }
