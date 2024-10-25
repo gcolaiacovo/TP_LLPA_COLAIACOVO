@@ -19,14 +19,21 @@ namespace LPPA_Colaiacovo_BLL.Clases
         public List<Producto> GetProductos()
         {
             List<Producto> products = dALProducto.GetAll();
-
+            List<int> idsFallados = new List<int>();
+            
             foreach (var product in products)
             {
                 var digitoVerificador = this.CalcularChecksum(product);
+
                 if (digitoVerificador != product.DigitoVerificador)
                 {
-                    throw new DigitoVerificadorException(digitoVerificador, "Producto");
+                    idsFallados.Add(product.Id);
                 }
+            }
+
+            if (idsFallados.Any())
+            {
+                throw new DigitoVerificadorException(idsFallados, "Producto");
             }
 
             return products;

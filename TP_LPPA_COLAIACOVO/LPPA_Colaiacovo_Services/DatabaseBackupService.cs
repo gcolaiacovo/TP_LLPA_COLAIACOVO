@@ -40,48 +40,25 @@ namespace LPPA_Colaiacovo_Services
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(SQLHelper.GetConnectionString()))
+                var databaseName = "GColaiacovoLPPA";
+                string sqlRestore = $@"
+                        USE master;
+                        ALTER DATABASE [{databaseName}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+                        RESTORE DATABASE [{databaseName}]
+                        FROM DISK = 'C:\\backups\\backup.bak'
+                        WITH REPLACE;
+                        ALTER DATABASE [{databaseName}] SET MULTI_USER;";
+
+                using (SqlConnection conn = new SqlConnection(SQLHelper.GetConnectionString()))
                 {
-                    connection.Open();
-
-                    // Desconecta todas las conexiones activas a la base de datos
-                    string queryKillConnections = @"
-                ALTER DATABASE [GColaiacovoLPPA] SET SINGLE_USER WITH ROLLBACK IMMEDIATE";
-
-                    using (SqlCommand commandKillConnections = new SqlCommand(queryKillConnections, connection))
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(sqlRestore, conn))
                     {
-                        commandKillConnections.ExecuteNonQuery();
+                        cmd.ExecuteNonQuery();
                     }
-
-                    // Cambia el contexto a la base de datos 'master'
-                    string queryUseMaster = "USE master";
-                    using (SqlCommand commandUseMaster = new SqlCommand(queryUseMaster, connection))
-                    {
-                        commandUseMaster.ExecuteNonQuery();
-                    }
-
-                    // Construye la consulta para restaurar desde el backup
-                    string queryRestore = @"
-                RESTORE DATABASE [GColaiacovoLPPA] 
-                FROM DISK = 'C:\\backups\\backup.bak' 
-                WITH REPLACE";
-
-                    using (SqlCommand commandRestore = new SqlCommand(queryRestore, connection))
-                    {
-                        commandRestore.ExecuteNonQuery();
-                    }
-
-                    // Vuelve a poner la base de datos en modo multiusuario
-                    string querySetMultiUser = @"
-                ALTER DATABASE [GColaiacovoLPPA] SET MULTI_USER";
-
-                    using (SqlCommand commandSetMultiUser = new SqlCommand(querySetMultiUser, connection))
-                    {
-                        commandSetMultiUser.ExecuteNonQuery();
-                    }
-
-                    return true;
                 }
+
+                return true;
             }
             catch (Exception ex)
             {

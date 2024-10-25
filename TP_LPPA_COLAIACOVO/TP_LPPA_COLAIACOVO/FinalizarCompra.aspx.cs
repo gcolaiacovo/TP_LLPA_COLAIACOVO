@@ -1,10 +1,12 @@
 ﻿using LPPA_Colaiacovo_BLL.Clases;
+using LPPA_Colaiacovo_DAL.Clases;
 using LPPA_Colaiacovo_Entidades.Clases;
 using LPPA_Colaiacovo_Entidades.DTO;
 using LPPA_Colaiacovo_Entidades.Enums;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -13,10 +15,12 @@ using System.Web.UI.WebControls;
 public partial class FinalizarCompra : System.Web.UI.Page
 {
     private readonly BLLProducto bLLProducto;
+    private readonly BLLBitacora bLLBitacora;
     private readonly BLLVenta bLLVenta;
 
     public FinalizarCompra()
     {
+        bLLBitacora = new BLLBitacora();
         bLLProducto = new BLLProducto();
         bLLVenta = new BLLVenta();
     }
@@ -197,6 +201,23 @@ public partial class FinalizarCompra : System.Web.UI.Page
         venta.MontoTotal = Convert.ToDecimal(venta.VentaProductos.Sum(t => t.Monto));
 
         bLLVenta.Save(venta);
+        
+        if (Request.Cookies["ItemsEnCarrito"] != null)
+        {
+            HttpCookie removecookie = new HttpCookie("ItemsEnCarrito");
+            removecookie.Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies.Add(removecookie);
+        }
+
+        bLLBitacora.SaveBitacora(new Bitacora()
+        {
+            Descripcion = "Se registró una nueva venta",
+            FechaCreado = DateTime.Now,
+            IdUsuario = venta.IdUsuario,
+        });
+
+        ClientScript.RegisterStartupScript(this.GetType(), "UpdateItemCount", "actualizarItemsCarrito();", true);
+        Response.Redirect("Gracias.aspx");
     }
 
     protected void ddlPaymentMethod_SelectedIndexChanged(object sender, EventArgs e)

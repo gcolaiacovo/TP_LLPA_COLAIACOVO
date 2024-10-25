@@ -1,16 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace LPPA_Colaiacovo_Entidades.Excepciones
 {
     public class DigitoVerificadorException : Exception
     {
-        public int Id { get; }
+        public List<int> Ids { get; }
         public string EntidadTipo { get; }
 
-
-        public DigitoVerificadorException(int id, string entidadTipo = "Usuario")
+        public DigitoVerificadorException(List<int> ids, string entidadTipo = "Usuario")
         {
-            Id = id;
+            Ids = ids;
             EntidadTipo = entidadTipo;
         }
 
@@ -18,7 +18,7 @@ namespace LPPA_Colaiacovo_Entidades.Excepciones
         {
             get
             {
-                return $"El {EntidadTipo} {Id} está corrompido!!";
+                return $"El {EntidadTipo} {Ids} está corrompido!!";
             }
         }
     }

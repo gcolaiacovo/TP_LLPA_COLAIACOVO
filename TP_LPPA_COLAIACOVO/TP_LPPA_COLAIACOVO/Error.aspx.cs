@@ -1,6 +1,6 @@
 ﻿using LPPA_Colaiacovo_Services;
 using System;
-using System.Activities.Statements;
+using System.Web;
 
 public partial class Error : System.Web.UI.Page
 {
@@ -9,11 +9,12 @@ public partial class Error : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            if (Request.QueryString["mensajeError"] != null)
+            var msjError = Request.QueryString["mensajeError"];
+            if (!string.IsNullOrEmpty(msjError))
             {
-                var codigoError = Server.UrlDecode(Request.QueryString["mensajeError"]);
-                // Hacer algo con el mensaje de error, por ejemplo, mostrarlo en una etiqueta
-                mensajeError.Text = codigoError;
+                msjError = HttpUtility.HtmlDecode(msjError);
+                msjError = msjError.Replace("\n", "<br/>");
+                mensajeError.Text = msjError;
             }
         }
     }

@@ -13,14 +13,13 @@
         <div class="error-layout">
 
             <div class="img-container">
-                <h2>
-                    Tenemos problemas con la integridad de la informacion de nuestro sitio.
+                <h2>Tenemos problemas con la integridad de la informacion de nuestro sitio.
                 </h2>
 
                 <img src="Resources/errorIcon.png" class="logo" />
-                <asp:Label id="mensajeError" runat="server"></asp:Label>
+                <asp:Literal ID="mensajeError" runat="server" Mode="PassThrough"></asp:Literal>
 
-                <asp:Button id="btnRestaurar" runat="server" Text="Restaurar" OnClick="btnRestaurar_Click" class="restaurar-button" />
+                <asp:Button ID="btnRestaurar" runat="server" Text="Restaurar" OnClick="btnRestaurar_Click" class="restaurar-button" />
             </div>
         </div>
     </form>

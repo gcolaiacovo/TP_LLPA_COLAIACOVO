@@ -39,9 +39,15 @@ namespace LPPA_Colaiacovo_BLL.Clases
         {
             var usuario = DALUsuario.Get(id);
             var digitoVerificador = CalcularChecksum(usuario);
+            List<int> idsFallados = new List<int>();
             if (digitoVerificador != usuario.DigitoVerificador)
             {
-                throw new DigitoVerificadorException(usuario.Id);
+                idsFallados.Add(usuario.Id);
+            }
+
+            if (idsFallados.Any())
+            {
+                throw new DigitoVerificadorException(idsFallados);
             }
 
             return usuario;
@@ -50,14 +56,20 @@ namespace LPPA_Colaiacovo_BLL.Clases
         public List<Usuario> GetUsuarios()
         {
             var usuarios = DALUsuario.GetAll();
+            List<int> idsFallados = new List<int>();
 
             foreach (var usuario in usuarios)
             {
                 var digitoVerificador = CalcularChecksum(usuario);
                 if (digitoVerificador != usuario.DigitoVerificador)
                 {
-                    throw new DigitoVerificadorException(usuario.Id);
+                    idsFallados.Add(usuario.Id);
                 }
+            }
+
+            if (idsFallados.Any())
+            {
+                throw new DigitoVerificadorException(idsFallados);
             }
 
             return usuarios;

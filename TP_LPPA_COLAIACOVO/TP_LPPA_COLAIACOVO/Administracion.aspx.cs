@@ -11,6 +11,8 @@ using LPPA_WebService;
 using Usuario = LPPA_Colaiacovo_Entidades.Clases.Usuario;
 using Producto = LPPA_Colaiacovo_Entidades.Clases.Producto;
 using Venta = LPPA_Colaiacovo_Entidades.Clases.Venta;
+using LPPA_Colaiacovo_Entidades.Excepciones;
+using System.Text;
 
 
 public partial class Administracion : System.Web.UI.Page
@@ -88,6 +90,16 @@ public partial class Administracion : System.Web.UI.Page
                 var usuario = usuarios.FirstOrDefault(o => o.Id == bitacora.IdUsuario.Value);
                 bitacora.Usuario = usuario;
             }
+        }
+        catch (DigitoVerificadorException ex)
+        {
+            var ids = ex.Ids;
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Error en digitos verificadores: ");
+            ids.ForEach(id => { sb.AppendLine(ex.EntidadTipo + " con ID " + id); });
+            string mensajeFormateado = sb.ToString().Replace(Environment.NewLine, "<br/>");
+            string mensajeCodificado = HttpUtility.HtmlEncode(mensajeFormateado);
+            Response.Redirect("Error.aspx?mensajeError=" + Server.UrlEncode(mensajeCodificado));
         }
         catch (Exception ex)
         {

@@ -64,7 +64,8 @@ public class MiWebService : System.Web.Services.WebService
                         var prod = productos.FirstOrDefault(p => p.Id == producto.Id);
                         writer.WriteStartElement("Producto");
 
-                        writer.WriteElementString("Nombre", prod.Nombre);
+                        var productoNombre = prod != null ? prod.Nombre : null;
+                        writer.WriteElementString("Nombre", productoNombre);
                         writer.WriteElementString("Cantidad", producto.Cantidad.ToString());
                         writer.WriteElementString("Monto", producto.Monto.ToString("F2"));
 
